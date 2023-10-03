@@ -9,13 +9,17 @@
 }
 
 body {
-  height: 100vh;  
+  height: 100vh;
   display: grid;
   place-items: center;
 
-  background: linear-gradient(45deg, #190361 0%, #B0F 100%) no-repeat;
-
   font-size: 1.6rem;
+
+  background: linear-gradient(45deg, #190361 0%, #B0F 100%);
+  background-size: 200% 200%;
+
+  animation: gradient 10s ease infinite;
+  -webkit-animation: gradient 10s ease infinite;
 }
 
 .hide {
@@ -40,22 +44,29 @@ img {
 
 main {
   width: min(42.8rem, 90%);
-  padding: 4.8rem 6.4rem ;  
+  padding: 4.8rem 6.4rem;
 
   background: #FFFFFF;
-  border-radius: .5rem;  
+  border-radius: .5rem;
   box-shadow: 0 2rem 5rem 0 rgba(0, 0, 0, 0.80);
 
   text-align: center;
 }
 
-/* Home (tela inicial) */
+/* Home (primary screen) */
 .home p {
   color: #34355B;
   margin: 1.4rem 0 2.6rem;
 }
 
-/* Sorte (tela secundária) */
+.home img:hover{
+  cursor: pointer;
+
+  animation: shake 1.2s both;
+  -webkit-animation: shake 1.2s both;
+}
+
+/* Sorte (secondary screen) */
 .sorte p {
   color: #000000;
   font-family: "Dancing Script", sans-serif;
@@ -64,6 +75,9 @@ main {
   margin: 1.7rem .2rem;
   background: #E4EDF1;
   box-shadow: .2rem .2rem .2rem 0 rgba(85, 85, 85, 0.50);
+
+  animation: appear 2.5s ease-out;
+  -webkit-animation: appear 2.5s ease-out;
 }
 
 .sorte img {
@@ -81,4 +95,68 @@ main {
   border: none;
   border-radius: .4rem;
   background: #FF9500;
+}
+
+.sorte button:hover {
+  cursor: pointer;
+  background: #8C5E28;
+
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+/* Animations */
+@keyframes shake {
+  0%,
+  100% {
+    -webkit-transform: translateX(0%);
+    transform: translateX(0%);
+    -webkit-transform-origin: 100% 50%;
+    transform-origin: 100% 50%;
+  }
+  15% {
+    -webkit-transform: translateX(-30px) rotate(-6deg);
+    transform: translateX(-30px) rotate(-6deg);
+  }
+  30% {
+    -webkit-transform: translateX(15px) rotate(6deg);
+    transform: translateX(15px) rotate(6deg);
+  }
+  45% {
+    -webkit-transform: translateX(-15px) rotate(-3.6deg);
+    transform: translateX(-15px) rotate(-3.6deg);
+  }
+  60% {
+    -webkit-transform: translateX(9px) rotate(2.4deg);
+    transform: translateX(9px) rotate(2.4deg);
+  }
+  75% {
+    -webkit-transform: translateX(-6px) rotate(-1.2deg);
+    transform: translateX(-6px) rotate(-1.2deg); 
+  }
+}
+
+@keyframes appear {
+from{
+  opacity: 0;
+  -webkit-transform: translateY(180px) scale(0);
+  transform: translateY(180px) scale(0);
+}
+to{
+  opacity: 1;
+  -webkit-transform: translateY(0px) scale(1);
+  transform: translateY(0px) scale(1);
+}
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
